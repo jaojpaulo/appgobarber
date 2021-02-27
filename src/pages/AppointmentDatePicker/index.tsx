@@ -101,16 +101,14 @@ const AppointmentDatePicker: React.FC = () => {
     setShowDatePicker(state => !state);
   }, []);
 
-  const handleDateChanged = useCallback(
-    (event: any, date: Date | undefined) => {
-      if (Platform.OS === 'android') {
-        setShowDatePicker(false);
-      }
-
+  const handleDateChanged = useCallback((_, date: Date | undefined) => {
+    if (Platform.OS === 'android') {
+      setShowDatePicker(false);
+    }
+    if (date) {
       setSelectedDate(date);
-    },
-    [],
-  );
+    }
+  }, []);
 
   const handleSelectProvider = useCallback((providerId: string) => {
     setSelectedProvider(providerId);
@@ -200,7 +198,6 @@ const AppointmentDatePicker: React.FC = () => {
               display="calendar"
               value={selectedDate}
               onChange={handleDateChanged}
-              textColor="#f4ede8"
               minimumDate={minimumDate}
             />
           )}
