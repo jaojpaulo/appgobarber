@@ -13,6 +13,7 @@ import { useNavigation } from '@react-navigation/native';
 import { Form } from '@unform/mobile';
 import { FormHandles } from '@unform/core';
 import * as Yup from 'yup';
+
 import api from '../../services/api';
 
 import getValidationErrors from '../../utils/getValidationErrors';
@@ -20,14 +21,9 @@ import getValidationErrors from '../../utils/getValidationErrors';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 
-import {
-  Container,
-  Title,
-  BackToSignInButton,
-  BackToSignInButtonText,
-} from './styles';
+import logoImg from '../../assets/logo.png';
 
-import logoImage from '../../assets/logo.png';
+import { Container, Title, BackToSignIn, BackToSignInText } from './styles';
 
 interface SignUpFormData {
   name: string;
@@ -42,7 +38,7 @@ const SignUp: React.FC = () => {
   const emailInputRef = useRef<TextInput>(null);
   const passwordInputRef = useRef<TextInput>(null);
 
-  const handlSignUp = useCallback(
+  const handleSignUp = useCallback(
     async (data: SignUpFormData) => {
       try {
         formRef.current?.setErrors({});
@@ -51,18 +47,19 @@ const SignUp: React.FC = () => {
           name: Yup.string().required('Nome obrigatório'),
           email: Yup.string()
             .required('E-mail obrigatório')
-            .email('Digite um email válido'),
-          password: Yup.string().min(6, 'Senha deve ter no mínimo 6 dígitos'),
+            .email('Digite um e-mail válido'),
+          password: Yup.string().min(6, 'No mínimo 6 dígitos'),
         });
 
         await schema.validate(data, {
           abortEarly: false,
         });
+
         await api.post('/users', data);
 
         Alert.alert(
           'Cadastro realizado com sucesso!',
-          'Você já pode fazer login na aplicação',
+          'Você já pode fazer login na aplicação.',
         );
 
         navigation.goBack();
@@ -74,6 +71,7 @@ const SignUp: React.FC = () => {
 
           return;
         }
+
         Alert.alert(
           'Erro no cadastro',
           'Ocorreu um erro ao fazer cadastro, tente novamente.',
@@ -95,13 +93,13 @@ const SignUp: React.FC = () => {
           contentContainerStyle={{ flex: 1 }}
         >
           <Container>
-            <Image source={logoImage} />
+            <Image source={logoImg} />
 
             <View>
               <Title>Crie sua conta</Title>
             </View>
 
-            <Form ref={formRef} onSubmit={handlSignUp}>
+            <Form ref={formRef} onSubmit={handleSignUp}>
               <Input
                 autoCapitalize="words"
                 name="name"
@@ -146,10 +144,10 @@ const SignUp: React.FC = () => {
         </ScrollView>
       </KeyboardAvoidingView>
 
-      <BackToSignInButton onPress={() => navigation.goBack()}>
+      <BackToSignIn onPress={() => navigation.goBack()}>
         <Icon name="arrow-left" size={20} color="#fff" />
-        <BackToSignInButtonText>Voltar para logon</BackToSignInButtonText>
-      </BackToSignInButton>
+        <BackToSignInText>Voltar para logon</BackToSignInText>
+      </BackToSignIn>
     </>
   );
 };

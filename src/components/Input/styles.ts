@@ -15,13 +15,16 @@ export const Container = styled.View<ContainerProps>`
   margin-bottom: 8px;
   border-width: 2px;
   border-color: #232129;
+
   flex-direction: row;
   align-items: center;
+
   ${props =>
     props.isErrored &&
     css`
       border-color: #c53030;
     `}
+
   ${props =>
     props.isFocused &&
     css`
@@ -32,7 +35,7 @@ export const Container = styled.View<ContainerProps>`
 export const TextInput = styled.TextInput`
   flex: 1;
   color: #fff;
-  font-size: 16px;
+  font-size: 18px;
   font-family: 'RobotoSlab-Regular';
 `;
 

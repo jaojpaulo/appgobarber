@@ -1,12 +1,12 @@
 import React, { useCallback, useRef } from 'react';
 import {
-  Alert,
   Image,
   View,
-  KeyboardAvoidingView,
   ScrollView,
+  KeyboardAvoidingView,
   Platform,
   TextInput,
+  Alert,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import { useNavigation } from '@react-navigation/native';
@@ -54,7 +54,7 @@ const SignIn: React.FC = () => {
         const schema = Yup.object().shape({
           email: Yup.string()
             .required('E-mail obrigatório')
-            .email('Digite um email válido'),
+            .email('Digite um e-mail válido'),
           password: Yup.string().required('Senha obrigatória'),
         });
 
@@ -69,6 +69,8 @@ const SignIn: React.FC = () => {
       } catch (err) {
         if (err instanceof Yup.ValidationError) {
           const errors = getValidationErrors(err);
+
+          console.log(errors);
 
           formRef.current?.setErrors(errors);
 
@@ -101,6 +103,7 @@ const SignIn: React.FC = () => {
             <View>
               <Title>Faça seu logon</Title>
             </View>
+
             <Form ref={formRef} onSubmit={handleSignIn}>
               <Input
                 autoCorrect={false}
@@ -145,7 +148,6 @@ const SignIn: React.FC = () => {
 
       <CreateAccountButton onPress={() => navigation.navigate('SignUp')}>
         <Icon name="log-in" size={20} color="#ff9000" />
-
         <CreateAccountButtonText>Criar uma conta</CreateAccountButtonText>
       </CreateAccountButton>
     </>
