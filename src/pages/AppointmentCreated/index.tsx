@@ -2,7 +2,8 @@ import React, { useMemo, useCallback } from 'react';
 import Icon from 'react-native-vector-icons/Feather';
 
 import { useRoute, useNavigation } from '@react-navigation/native';
-import ptBR, { format } from 'date-fns';
+import { format } from 'date-fns';
+import ptBr from 'date-fns/locale/pt-BR';
 
 import {
   Container,
@@ -25,7 +26,7 @@ const AppointmentCreated: React.FC = () => {
     return format(
       params.date,
       "EEEE', dia' dd 'de' MMMM 'de' yyyy 'às' HH:mm'h'",
-      { locale: ptBR },
+      { locale: ptBr },
     );
   }, [params.date]);
 
