@@ -50,7 +50,7 @@ const Dashboard: React.FC = () => {
       <Header>
         <HeaderTitle>
           Bem vindo,
-          {'  \n'}
+          {'\n'}
           <UserName>{user.name}</UserName>
         </HeaderTitle>
 
