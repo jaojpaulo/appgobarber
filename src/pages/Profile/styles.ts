@@ -21,3 +21,9 @@ export const Avatar = styled.Image`
   margin-top: 64px;
   align-self: center;
 `;
+
+export const BackButton = styled.TouchableOpacity`
+  position: absolute;
+  left: 24px;
+  top: 24px;
+`;

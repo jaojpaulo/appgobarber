@@ -48,7 +48,7 @@ interface AvailabilityItem {
   available: boolean;
 }
 
-const AppointmentDatePicker: React.FC = () => {
+const CreateAppointment: React.FC = () => {
   const { user } = useAuth();
   const route = useRoute();
   const navigation = useNavigation();
@@ -261,4 +261,4 @@ const AppointmentDatePicker: React.FC = () => {
   );
 };
 
-export default AppointmentDatePicker;
+export default CreateAppointment;

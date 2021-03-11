@@ -40,7 +40,7 @@ const Dashboard: React.FC = () => {
 
   const handleSelectProvider = useCallback(
     (providerId: string) => {
-      navigation.navigate('AppointmentDatePicker', { providerId });
+      navigation.navigate('CreateAppointment', { providerId });
     },
     [navigation],
   );
